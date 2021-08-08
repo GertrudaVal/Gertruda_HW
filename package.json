@@ -1,0 +1,25 @@
+{
+  "name": "hw",
+  "version": "1.0.0",
+  "description": "Automation testing homework SFT",
+  "main": "playwright.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GertrudaVal/Gertruda_HW.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GertrudaVal/Gertruda_HW/issues"
+  },
+  "homepage": "https://github.com/GertrudaVal/Gertruda_HW#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.13.1"
+  }
+}
