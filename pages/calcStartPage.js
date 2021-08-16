@@ -28,6 +28,6 @@ exports.CalcStartPage = class CalcStartPage {
   }
 
   async selectBuild(build) {
-    await this.page.selectOption("#selectOperationDropdown", `${build}`);
+    await this.page.selectOption("#selectBuild", `${build}`);
   }
 };

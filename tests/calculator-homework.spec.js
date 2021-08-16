@@ -5,7 +5,7 @@ const getRandomInt = (max) => {
   return Math.floor(Math.random() * max);
 };
 //Build 0 is prototype.
-const builds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const builds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // 
 
 builds.forEach((build) => {
   test.describe("", () => {
@@ -59,8 +59,7 @@ builds.forEach((build) => {
     test(`clear button (Build ${build})`, async () => {
       const numberOne = getRandomInt(100);
       const numberTwo = getRandomInt(20);
-      await page.fill("#number1Field", numberOne.toString());
-      await page.fill("#number2Field", numberTwo.toString());
+      await startPage.calculate(numberOne, numberTwo);
 
       await page.click("#clearButton");
       const result = await startPage.getAnswer();
@@ -71,15 +70,15 @@ builds.forEach((build) => {
       expect(fieldTwo).toBe(numberTwo.toString());
     });
 
-    //it.only
+    //it.only. Pasiima dropdown pagal build?????????
     test(`integer checkbox (Build ${build})`, async () => {
       const numberOne = getRandomInt(100);
       const numberTwo = 0.5;
+      //await page.selectOption("#selectOperationDropdown", "0");
       await startPage.calculate(numberOne, numberTwo);
-
-      const expectedResult = numberOne + numberTwo;
+      const expectedFullResult = numberOne + numberTwo;
       let result = await startPage.getAnswer();
-      expect(result).toBe(expectedResult.toString());
+      expect(result).toBe(expectedFullResult.toString());
       await page.check("#integerSelect");
       result = await startPage.getAnswer();
       expect(result).toBe(numberOne.toString());
@@ -138,6 +137,16 @@ builds.forEach((build) => {
     test(`Multiplication (Build ${build})`, async () => {
       const numberOne = getRandomInt(100);
       const numberTwo = getRandomInt(100);
+
+      await page.selectOption("#selectOperationDropdown", "2");
+      await startPage.calculate(numberOne, numberTwo);
+      const expectedResultMultiplication = numberOne * numberTwo;
+      let result = await startPage.getAnswer();
+      expect(result).toBe(expectedResultMultiplication.toString());
+    });
+    test(`Multiplication with negative numbers (Build ${build})`, async () => { 
+      const numberOne = getRandomInt(100) * -1;
+      const numberTwo = getRandomInt(100) *-1;
 
       await page.selectOption("#selectOperationDropdown", "2");
       await startPage.calculate(numberOne, numberTwo);
